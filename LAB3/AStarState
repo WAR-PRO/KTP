@@ -1,0 +1,77 @@
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class AStarState
+{
+    private Map2D map;
+
+    private HashMap<Location, Waypoint> opened = new HashMap<>();
+    private HashMap<Location, Waypoint> closed = new HashMap<>();
+
+
+    public AStarState(Map2D map)
+    {
+        if (map == null)
+            throw new NullPointerException("map cannot be null");
+
+        this.map = map;
+    }
+
+    public Map2D getMap()
+    {
+        return map;
+    }
+
+
+    public Waypoint getMinOpenWaypoint()
+    {
+        Waypoint min = null;
+        for (Map.Entry<Location, Waypoint> entry : opened.entrySet()) {
+            if (min == null) {
+                min = entry.getValue();
+            } else {
+                if (min.getTotalCost() > entry.getValue().getTotalCost() ) {
+                    min = entry.getValue();
+                }
+            }
+        }
+
+        return min;
+    }
+
+
+    public boolean addOpenWaypoint(Waypoint newWP)
+    {
+        if (!opened.containsKey(newWP.getLocation())) {
+            opened.put(newWP.getLocation(), newWP);
+            return true;
+        } else {
+            Location location = newWP.getLocation();
+            for (Map.Entry<Location, Waypoint> entry : opened.entrySet()) {
+                if (entry.getKey().equals(location) && entry.getValue().getRemainingCost() > newWP.getRemainingCost()) {
+                    opened.put(location, newWP);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
+    public int numOpenWaypoints()
+    {
+        return opened.size();
+    }
+
+    public void closeWaypoint(Location loc)
+    {
+        closed.put(loc, opened.remove(loc));
+    }
+
+    public boolean isLocationClosed(Location loc)
+    {
+        return closed.containsKey(loc);
+    }
+}
