@@ -1,9 +1,5 @@
 import java.awt.geom.Rectangle2D;
 
-/**
- * Этот класс предоставляет общий интерфейс и операции для генераторов фракталов, 
- * которые можно просматривать в Fractal Explorer.
- */
 public abstract class FractalGenerator {
 
     public static double getCoord(double rangeMin, double rangeMax,
