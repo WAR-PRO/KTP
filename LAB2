@@ -1,0 +1,138 @@
+public class Main {
+    public static void main (String[] args) {
+        double x,y,z;
+        DecimalFormat df = new DecimalFormat("###.##");
+     /** ввод данных из консоли **/
+    Scanner in = new Scanner(System.in);
+    /** ввод координат для первой точки **/
+        System.out.println("введите координаты первой точки");
+    System.out.println("Введите координату X");
+    x=in.nextDouble();
+    System.out.println("Введите координату Y");
+    y=in.nextDouble();
+    System.out.println("Введите координату Z");
+    z=in.nextDouble();
+    Point3d onepoint = new Point3d(x, y, z);//создание точки
+
+ /** ввод координат для второй точки **/
+     System.out.println("введите координаты второй точки");
+     System.out.println("введите координату x");
+     x=in.nextDouble();
+     System.out.println("введите координату y");
+     y=in.nextDouble();
+     System.out.println("введите координату z");
+     z=in.nextDouble();
+     Point3d twopoint = new Point3d(x, y, z);//создание второй точки
+
+ /** ввод координат для третьей точки **/
+         System.out.println("введите координаты третьей точки");
+     System.out.println("Введите координату X");
+     x=in.nextDouble();
+     System.out.println("Введите координату Y");
+     y=in.nextDouble();
+     System.out.println("Введите координату Z");
+     z=in.nextDouble();
+     Point3d threepoint = new Point3d(x, y, z);//создание третьей точки
+
+ /** проверка трёх точек на равенство **/
+ if ((Point3d.Check3D(onepoint,twopoint) == false)
+       &&(Point3d.Check3D(onepoint,threepoint) == false)
+         &&(Point3d.Check3D(twopoint,threepoint) == false))
+ {System.out.println("точки не равны, программа продолжает работать");}
+ else {System.out.println("точки имеют одинаковые координаты, работа программы остановлена"); System.exit(0);}
+
+ /** вычисление площади треугольника **/
+ double P = Point3d.computeArea(onepoint,twopoint,threepoint);
+ System.out.println("площадь треугольника равна = " + df.format(P));
+
+    }
+}
+--------------------------------------------------------------------------
+public class Point2d {
+            /**кордината x**/
+            private double xCoord;
+            /**кордината y**/
+            private double yCoord;
+    /** конструктор инициализации **/
+    public Point2d (double x, double y){
+        xCoord = x;
+        yCoord = y;
+    }
+    /** конструктор по умолчанию **/
+    public Point2d(){
+        //вызовите конструктор с двумя параметрами и определите источник.
+        this (0,0);
+    }
+        /** возвращение координаты x **/
+    public double getX2(){
+        return xCoord;
+    }
+        /** возвращение координаты y **/
+        public double getY2(){
+            return yCoord;
+        }
+    /** установка значения координаты x **/
+    public void setX2(double val){
+        xCoord = val;
+    }
+    public void setY2(double val) {
+        yCoord = val;
+    }
+    public static boolean Check2D(Point2d first, Point2d two){
+        if ((first.getX2() == two.getX2()) && (first.getY2() == two.getY2())){
+            return true;
+        }
+        else {return false;}
+    }
+}
+------------------------------------------------------------------------------
+public class Point3d extends Point2d {
+        /** координата z **/
+        private double ZCoord;
+
+/** конструктор инициализации **/
+public Point3d (double X, double Y, double Z){
+    super(X,Y);
+    ZCoord = Z;
+}
+
+/** конструктор по умолчанию **/
+public Point3d(){
+    this (0.0,0.0,0.0);
+}
+
+/** возвращение координаты z **/
+private double getZ3(){
+        return ZCoord;
+    }
+
+/** установка значения координаты z **/
+private void setZ3(double val){
+        ZCoord = val;
+    }
+
+/** функция сравнения двух точек **/
+public static boolean Check3D(Point3d first, Point3d two){
+      if ((first.getX2()==two.getX2())&&(first.getY2()==two.getY2())&&(first.getZ3()==two.getZ3())){return true;}
+      else return false;
+}
+
+/** функция получения расстояния между точками **/
+public static double distantTo(Point3d first, Point3d two){
+return Math.sqrt(
+        Math.pow((two.getX2()-first.getX2()),2)
+         + Math.pow((two.getY2()-first.getY2()),2)
+            + Math.pow((two.getZ3()-first.getZ3()),2));
+}
+
+/** функция получения площади треугольника **/
+public static double computeArea(Point3d one, Point3d two, Point3d three){
+    double a,b,c,p;
+    a = distantTo(one,two);
+    b = distantTo(two,three);
+    c = distantTo(one,three);
+    p = 0.5*(a+b+c);
+    return Math.sqrt(p*(p-a)*(p-b)*(p-c));
+}
+
+}
