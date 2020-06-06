@@ -4,11 +4,11 @@ import java.util.*;
 public class osn {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		//System.out.printf("Figure: ");
+		//System.out.printf("фигура: ");
 		//String figure = input.nextLine();
-		System.out.printf("Start: ");
+		System.out.printf("старт: ");
 		String start = input.nextLine();
-		System.out.printf("End: ");
+		System.out.printf("конец: ");
 		String end = input.nextLine();
 		System.out.println(Ferz.canMove(start, end));
 	}
