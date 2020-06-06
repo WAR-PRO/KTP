@@ -3,14 +3,14 @@ import java.util.*;
 public class Task10 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		System.out.printf("Print in nubmer: ");
+		System.out.printf("напишите номер: ");
 		int number = Integer.parseInt(input.nextLine());
-		System.out.println("Result: ");
+		System.out.println("результат: ");
 		System.out.println(hexLattice(number));
 	}
 
 	public static String hexLattice(int number) {
-		if (number % 6 != 1) return "Invalid";
+		if (number % 6 != 1) return "недействительно";
 		if (number == 1) return "o";
 		int levels = 1;
 		int i = 0;
