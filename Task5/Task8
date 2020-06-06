@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 public class Task8 {
 	public static void main(String[] args) throws NoSuchAlgorithmException {
         Scanner input = new Scanner(System.in);
-        System.out.printf("What do you want to hash?: ");
+        System.out.printf("Что вы хотите хешировать?: ");
         String unhased = input.nextLine();
         System.out.println(getHash(unhased));
 	}
