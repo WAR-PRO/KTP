@@ -4,10 +4,10 @@ import java.util.*;
 public class Task1 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		System.out.println("1. Encrypt\n2. Decrypt");
+		System.out.println("1. шифровка\n2. расшифровка");
 		String inputFunction = input.nextLine();
 		if (inputFunction.equals("1")) {
-			System.out.printf("String to encrypt: ");
+			System.out.printf("строка для шфирования: ");
 			String string = input.nextLine();
 			int[] result = encrypt(string);
 			for (int i: result) {
