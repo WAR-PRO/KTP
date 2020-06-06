@@ -21,7 +21,7 @@ public class Konb {
 				}
 			}
 		}
-		System.out.printf("Konb can't move from %s to %s\n", start, end);
+		System.out.printf("Конь не может двигаться от %s до %s\n", start, end);
 		return false;
 	}
 }
