@@ -3,9 +3,9 @@ import java.util.*;
 public class Task3 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		System.out.printf("Shortcut: ");
+		System.out.printf("Кратчайший путь: ");
 		String shortword = input.nextLine();
-		System.out.printf("Word: ");
+		System.out.printf("Слово: ");
 		String longword = input.nextLine();
 		System.out.println(canComplete(shortword, longword));
 	}
